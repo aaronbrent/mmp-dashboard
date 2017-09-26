@@ -22,10 +22,7 @@ app.use("/api/todo", require("./routes/todoRoutes"));
 // 'public' and we'll let express serve up the static files for us.
 app.use(express.static(path.join(__dirname, "public")));
 
-mongoose.connect(config.database, function (err) {  
-    if (err) throw err;
-    console.log("Successfully connected to the database");
-});
+mongoose.connect(config.database);
 
 app.use("/auth", require("./routes/authRoutes"));
 

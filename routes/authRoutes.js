@@ -45,4 +45,4 @@ authRoutes.post("/login", function (req, res) {
     });
 });
 
-module.exports = authRoutes;
+module.exports = authRoutes;  
