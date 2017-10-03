@@ -13,16 +13,20 @@ var port = process.env.PORT || 5000;
 app.use(morgan("dev"));  
 app.use(bodyParser.json());
 
-// Make the app use the express-jwt authentication middleware on anything starting with "/api"
-app.use("/api", expressJwt({secret: config.secret}));
-
-app.use("/api/todo", require("./routes/todoRoutes"));
-
 // When we get to doing the frontend, we'll put it in a folder called
 // 'public' and we'll let express serve up the static files for us.
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(config.database);
+
+// Make the app use the express-jwt authentication middleware on anything starting with "/api"
+app.use("/api", expressJwt({secret: config.secret}));
+
+app.use("/api/todo", require("./routes/todoRoutes"));
+
+app.use("/auth/change-password", expressJwt({secret: config.secret}));
+
+app.use("/auth/forgot", expressJwt({secret: config.secret}));
 
 app.use("/auth", require("./routes/authRoutes"));
 

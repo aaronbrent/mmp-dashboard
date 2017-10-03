@@ -21,6 +21,8 @@
                 <li ng-hide="userService.isAuthenticated()"><a href="#/login">Login</a></li>  
                 <li ng-hide="userService.isAuthenticated()"><a href="#/signup">Signup</a></li>  
                 <li ng-show="userService.isAuthenticated()"><a href="#/logout">Logout</a></li> 
+                <li ng-show="userService.isAuthenticated()"><a href="#/profile">Profile</a></li>  
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

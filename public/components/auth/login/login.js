@@ -4,6 +4,7 @@ app.controller("LoginController", ["$scope", "$location", "UserService", functio
 
     $scope.login = function (user) {
         UserService.login(user).then(function (response) {
+            
             $location.path("/todos");
         }, function (response) {
             alert(response.data.message);

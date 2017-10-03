@@ -14,6 +14,10 @@ app.config(["$routeProvider", function ($routeProvider) {
             controller: "LogoutController",
             template: ""
         })
+        .when("/forgot", {
+            templateUrl: "components/auth/forgot/forgot.html",
+            controller: "ForgotPasswordController"
+        })
 }]);
 
 app.service("TokenService", [function () {  
@@ -24,6 +28,7 @@ app.service("TokenService", [function () {
     };
 
     this.getToken = function () {
+        console.log(userToken)
         return localStorage[userToken];
     };
 
@@ -51,6 +56,20 @@ app.service("UserService", ["$http", "$location", "TokenService", function ($htt
 
     this.isAuthenticated = function () {
         return !!TokenService.getToken();
+    };
+    
+    this.changePassword = function (newPassword) {  
+        console.log(newPassword);
+        return $http.post("/auth/change-password", {newPassword: newPassword}).then(function (response) {
+            alert("Password Changed Successfully!");
+            return response.data;
+        }, function (response) {
+            alert("Problem with the server");
+        });
+    };
+    this.forgotPassword = function (email) {  
+        console.log("Sending an email to " + email);
+        return $http.post("/auth/forgot", {email: email})
     };
 }]);
 
