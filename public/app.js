@@ -1,6 +1,6 @@
-var app = angular.module("TodoApp", ["ngRoute", "TodoApp.Auth"]);
+var app = angular.module("TodoApp", ["ngRoute", "TodoApp.Auth", "chart.js"]);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, ChartJsProvider) {
     $routeProvider
         .when("/", {
             templateUrl: "components/home/home.html"
@@ -12,5 +12,5 @@ app.config(function ($routeProvider) {
         .when("/profile", {
             templateUrl: "components/profile/profile.html",
             controller: "ProfileController"
-})
+        })
 });
